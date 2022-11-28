@@ -13,7 +13,7 @@ const ContactList = ({ contacts, navigation }) => (
             data={contacts.sort((a, b) => a.name.localeCompare(b.name))}
             renderItem={({item})=>{
                 return (
-                    <ContactListItem contact={item} />
+                    <ContactListItem navigation={navigation} contact={item} />
                 )
             }}
         />
