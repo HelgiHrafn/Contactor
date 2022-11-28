@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { View, FlatList, Text } from 'react-native'
 import styles from './styles'
-import ContactListItem from '../ContactListItem'
 
-const ContactList = ({contacts}) => (
+
+const ContactList = ({ navigation }) => (
     <View>
         <Text>Contacts</Text>
         <FlatList
@@ -15,6 +16,7 @@ const ContactList = ({contacts}) => (
                 )
             }}
         />
+        <FlatList/>
     </View>
 )
 
