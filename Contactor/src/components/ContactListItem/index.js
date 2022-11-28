@@ -5,7 +5,6 @@ const ContactListItem = ({ contact }) => {
     return (
         <View>
             <Text>Name</Text>
-            <Text>phoneNumber</Text>
             <Image></Image>
         </View>
     )
