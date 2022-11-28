@@ -8,7 +8,7 @@ const ContactList = ({contacts}) => (
         <Text>Contacts</Text>
         <FlatList
             numColumns={1}
-            data={contacts}
+            data={contacts.sort((a, b) => a.name.localeCompare(b.name))}
             renderItem={({item})=>{
                 return (
                     <ContactListItem contact={item} />
