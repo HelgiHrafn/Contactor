@@ -1,22 +1,8 @@
-
-import { View, Text } from 'react-native'
-//import styles from './styles'
-import Toolbar from'../../components/Toolbar'
-import AddContactModal from '../../components/AddContactModal'
 import React, { useState } from 'react'
 import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
-
-
-const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-
-const addContact = async () => {
-  //const newBoard = await fileService.addItem(inputs, boardSmall)
-  console.log("We need to add contact to fileservice")
-
-}
 
 const Contacts = ({ navigation }) => {
 
@@ -56,19 +42,9 @@ const Contacts = ({ navigation }) => {
                   "phone": "(505) 503-4455",
                   "thumbnailPhoto": "https://static.wikia.nocookie.net/inconsistently-heinous/images/e/e0/Saul_2009.jpg/revision/latest?cb=20220828160305"
             }]
-    
-            return (
+    return (
           <View style={styles.main}>
-            <ContactList navigation={navigation} contacts={contacts} >
-
-            </ContactList>
-            <Toolbar
-            onAdd={() => setIsAddModalOpen(true)}/>
-            <AddContactModal
-            isOpen={isAddModalOpen}
-            closeModal={() => setIsAddModalOpen(false)}
-            title={'Create new contact!'}
-            addContact={addContact}/>
+            <ContactList navigation={navigation} contacts={contacts} ></ContactList>
           </View>
     )
   }
