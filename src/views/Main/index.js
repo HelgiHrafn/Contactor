@@ -28,10 +28,16 @@ const Contacts = ({ navigation }) => {
                 "id": 4,
                 "name": "Chris Pontius",
                 "phoneNumber": "538-6449",
-                "thumbnailPhoto": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg" }]
+                "thumbnailPhoto": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg" },
+            {
+                  "id": 5,
+                  "name": "Dua Lipa",
+                  "phoneNumber": "4206969",
+                  "thumbnailPhoto": "https://i.insider.com/63713995951bdc00182ddd13?width=700"
+            }]
     return (
           <View style={styles.main}>
-            <ContactList contacts={contacts} ></ContactList>
+            <ContactList navigation={navigation} contacts={contacts} ></ContactList>
           </View>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 
-const Contact = () => {
+const Contact = ({ contact }) => {
     return (
     <View>
         <Text>Name</Text>
