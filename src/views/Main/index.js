@@ -71,6 +71,7 @@ const Contacts = ({ navigation }) => {
             <View style={styles.main}>
             <Toolbar
             onAdd={() => setIsAddModalOpen(true)}/>
+            <Searchbar/>
             <AddContactModal
             isOpen={isAddModalOpen}
             closeModal={() => setIsAddModalOpen(false)}
