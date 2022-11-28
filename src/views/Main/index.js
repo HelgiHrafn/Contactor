@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
+import View from 'react-native'
+import AddContactModal from '../../components/AddContactModal'
 
 const Contacts = ({ navigation }) => {
 
@@ -51,8 +53,7 @@ const Contacts = ({ navigation }) => {
     
             return (
             <View style={styles.main}>
-            <ContactList navigation={navigation} contacts={contacts}>
-            </ContactList>
+            <ContactList navigation={navigation} contacts={contacts}/>
             <Toolbar
             onAdd={() => setIsAddModalOpen(true)}/>
             <AddContactModal
