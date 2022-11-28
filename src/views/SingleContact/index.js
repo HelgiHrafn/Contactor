@@ -9,7 +9,7 @@ const Contact = ({ navigation, route }) => {
 
 
   return (
-        <View style={styles.main}>
+        <View>
         </View>
   )
 }
