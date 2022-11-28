@@ -1,14 +1,15 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './styles'
+import { headings } from '../../styles/headings'
 
 
 
 const ContactListItem = ({ contact, navigation }) => {
   return (
-    <View>
-    <Text>{contact.name}</Text>
-    <Image source={{ uri: 'https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec'}} />
+    <View style={styles.contactItem}>
+      <Image style={styles.image} source={{ uri: contact.thumbnailPhoto}} />
+      <Text style={headings.h2}>{contact.name}</Text>
     </View>
   )
 }
