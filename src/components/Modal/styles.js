@@ -22,8 +22,8 @@ export default StyleSheet.create({
     marginBottom: 20
   },
   closeButton: {
-    width: 20,
-    height: 20
+    width: 30,
+    height: 30
   },
   buttonWrapper: {
     width: '97%',

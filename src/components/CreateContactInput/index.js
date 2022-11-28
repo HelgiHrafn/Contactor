@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { View, TextInput, Text, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
+import { Entypo } from '@expo/vector-icons';
 
-const CreateContactInput = ({ addContact, closeModal }) => {
+const CreateContactInput = ({ addContact, closeModal, takePhoto, selectFromCameraRoll }) => {
   const [inputs, setInputes] = useState({
     name: '',
-    phoneNumber: '',
-    thumbnailPhoto: ''
+    phoneNumber: ''
   })
 
   const inputHandler = (name, value) => {
@@ -15,14 +15,24 @@ const CreateContactInput = ({ addContact, closeModal }) => {
       [name]: value
     })
   }
+
+  // const takePhoto = () => {
+  //   console.log("Paparazzi")
+
+  // }
+
+  // const selectFromCameraRoll = () => {
+  //   console.log("Camera Rolll")
+    
+  // }
+
   const [errors, setErrors] = useState({
     name: '',
-    phoneNumber: '',
-    thumbnailPhoto: ''
+    phoneNumber: ''
   })
 
   const validateForm = () => {
-    const { name, phoneNumber, thumbnailPhoto } = inputs
+    const { name, phoneNumber } = inputs
     const errors = {}
 
     if (!name) {
@@ -30,9 +40,6 @@ const CreateContactInput = ({ addContact, closeModal }) => {
     }
     if (!phoneNumber) {
         errors.phoneNumber = 'Number can not be empty'
-    }
-    if (!thumbnailPhoto) {
-      errors.thumbnailPhoto = 'Image field can not be empty'
     }
 
     setErrors(errors)
@@ -61,12 +68,16 @@ const CreateContactInput = ({ addContact, closeModal }) => {
                 value={inputs.phoneNumber}
                 onChangeText={text => inputHandler('phoneNumber', text)} />
             <Text>{errors.phoneNumber}</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Link to Image"
-                value={inputs.thumbnailPhoto}
-                onChangeText={text => inputHandler('thumbnailPhoto', text)} />
-            <Text>{errors.thumbnailPhoto}</Text>
+            
+            <TouchableOpacity
+              onPress={() => takePhoto()}>
+              <Entypo style={styles.icon} name="camera"/>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => selectFromCameraRoll()}>
+              <Entypo style={styles.icon} name="image"/>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styles.buttonBackground}>
             <Button
               title="Create"

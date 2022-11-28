@@ -4,12 +4,27 @@ import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
 import {View} from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
+import * as imageService from '../../services/imageService'
 
 const Contacts = ({ navigation }) => {
 
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  // A boolean flag to indicate wether the modal to add a contact is open or not  
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
-    const addContact = async () => {
+
+  const takePhoto = async () => {
+    const photo = await imageService.takePhoto();
+    console.log(photo)
+
+  }
+
+
+    const selectFromCameraRoll = () => {
+    console.log("Camera Rolll")
+    
+  }
+
+  const addContact = async () => {
     //const newBoard = await fileService.addItem(inputs, boardSmall)
     console.log("We need to add contact to fileservice")
 
@@ -59,6 +74,8 @@ const Contacts = ({ navigation }) => {
             isOpen={isAddModalOpen}
             closeModal={() => setIsAddModalOpen(false)}
             title={'Create new contact!'}
+            takePhoto={takePhoto}
+            selectFromCameraRoll={selectFromCameraRoll}
             addContact={addContact}/>
             <ContactList navigation={navigation} contacts={contacts}/>
             
