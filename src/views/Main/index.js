@@ -10,25 +10,25 @@ const Contacts = ({ navigation }) => {
                 "id": 1,
                 "name": "Johnny Knoxville",
                 "phoneNumber": "772-4254",
-                "thumbnailPhoto": "https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg"
+                "thumbnailPhoto": "https://flxt.tmsimg.com/assets/198743_v9_bb.jpg"
             },
             {
                 "id": 2,
                 "name": "Steve O",
                 "phoneNumber": "644-7205",
-                "thumbnailPhoto": "https://hbr.org/resources/images/article_assets/2019/06/Jun19_05_1040477378.jpg"
+                "thumbnailPhoto": "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1492113764/articles/2016/04/12/up-close-and-personal-with-the-all-new-steve-o/160411-yamato-steve-o-tease_i0c7sr"
             },
             {
                 "id": 3,
                 "name": "Bam Margera",
                 "phoneNumber": "656-9649",
-                "thumbnailPhoto": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg"
+                "thumbnailPhoto": "https://static.wikia.nocookie.net/fan-hardcore/images/5/50/Bam_margera.jpg/revision/latest?cb=20220213043836"
             },
             {
                 "id": 4,
                 "name": "Chris Pontius",
                 "phoneNumber": "538-6449",
-                "thumbnailPhoto": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg" },
+                "thumbnailPhoto": "https://biographyline.com/wp-content/uploads/2021/05/Chris-Pontius.jpg" },
             {
                   "id": 5,
                   "name": "Dua Lipa",
