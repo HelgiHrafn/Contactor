@@ -3,14 +3,14 @@ import { View, TextInput, Text, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 const CreateContactInput = ({ addContact, closeModal }) => {
-  const [inputs, setInputes] = useState({
+  const [inputs, setInputs] = useState({
     name: '',
     phoneNumber: '',
     thumbnailPhoto: ''
   })
 
   const inputHandler = (name, value) => {
-    setInputes({
+    setInputs({
       ...inputs,
       [name]: value
     })

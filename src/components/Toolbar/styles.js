@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 80,
+    height: 30,
     backgroundColor: uranianBlue
 
   },
@@ -15,10 +15,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   toolbarActionText: {
-    fontWeight: 'bold',
-    color: 'black',
-    fontSize: 16,
-    fontFamily: 'Futura'
+    fontWeight: 'bold'
 
   },
   logo: {

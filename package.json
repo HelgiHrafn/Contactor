@@ -20,6 +20,8 @@
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
     "react-native-contacts": "^7.0.5",
+    "react-native-elements": "^3.4.2",
+    "react-native-ios-kit": "^0.0.22",
     "react-native-modal": "^13.0.1",
     "react-native-web": "~0.18.9"
   },

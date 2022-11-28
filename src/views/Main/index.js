@@ -4,6 +4,7 @@ import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
 import {View} from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
+import Searchbar from '../../components/SearchBar'
 
 const Contacts = ({ navigation }) => {
 
@@ -53,15 +54,19 @@ const Contacts = ({ navigation }) => {
     
             return (
             <View style={styles.main}>
-            <Toolbar
-            onAdd={() => setIsAddModalOpen(true)}/>
-            <AddContactModal
-            isOpen={isAddModalOpen}
-            closeModal={() => setIsAddModalOpen(false)}
-            title={'Create new contact!'}
-            addContact={addContact}/>
-            <ContactList navigation={navigation} contacts={contacts}/>
-            
+                  <Toolbar
+                  onAdd={() => setIsAddModalOpen(true)}/>
+
+                  <Searchbar/>
+                  <AddContactModal
+                  isOpen={isAddModalOpen}
+                  closeModal={() => setIsAddModalOpen(false)}
+                  title={'Create new contact!'}
+                  addContact={addContact}/>
+
+                  <ContactList 
+                  navigation={navigation} 
+                  contacts={contacts}/>
             </View>
     )
   }
