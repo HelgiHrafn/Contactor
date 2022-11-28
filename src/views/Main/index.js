@@ -6,6 +6,7 @@ import AddContactModal from '../../components/AddContactModal'
 import React, { useState } from 'react'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
+import Toolbar from '../../components/Toolbar'
 
 
 

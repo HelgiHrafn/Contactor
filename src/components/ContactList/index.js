@@ -6,7 +6,7 @@ import ContactListItem from '../ContactListItem'
 import { headings } from '../../styles/headings'
 
 const ContactList = ({ contacts, navigation }) => (
-    <View style={styles.list}>
+    <View style={[styles.list, styles.coolShadow]}>
         <Text style={[headings.h1, styles.title]}>My Contacts</Text>
         <FlatList
             numColumns={1}
