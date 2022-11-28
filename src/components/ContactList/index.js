@@ -2,11 +2,10 @@
 import React from 'react'
 import { View, FlatList, Text } from 'react-native'
 import styles from './styles'
+import ContactListItem from '../ContactListItem'
 
-
-const ContactList = ({ navigation }) => (
+const ContactList = ({ contacts, navigation }) => (
     <View>
-        <Text>Contacts</Text>
         <FlatList
             numColumns={1}
             data={contacts.sort((a, b) => a.name.localeCompare(b.name))}
