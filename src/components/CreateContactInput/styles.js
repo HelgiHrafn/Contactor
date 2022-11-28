@@ -23,5 +23,10 @@ export default StyleSheet.create({
     marginBottom: 5,
     marginTop: 10,
     borderRadius: 7
+  },
+  icon: {
+    fontSize: 60,
+    marginTop: 20,
+    marginBottom: 20
   }
 })

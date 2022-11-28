@@ -23,7 +23,8 @@
     "react-native-elements": "^3.4.2",
     "react-native-ios-kit": "^0.0.22",
     "react-native-modal": "^13.0.1",
-    "react-native-web": "~0.18.9"
+    "react-native-web": "~0.18.9",
+    "expo-image-picker": "~14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
