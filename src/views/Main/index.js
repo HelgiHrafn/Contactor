@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
+import Toolbar from '../../components/Toolbar'
 
 const Contacts = ({ navigation }) => {
 
@@ -43,6 +44,7 @@ const Contacts = ({ navigation }) => {
             }]
     return (
           <View style={styles.main}>
+            <Toolbar></Toolbar>
             <ContactList navigation={navigation} contacts={contacts} ></ContactList>
           </View>
     )
