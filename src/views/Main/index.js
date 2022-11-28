@@ -34,6 +34,12 @@ const Contacts = ({ navigation }) => {
                   "name": "Dua Lipa",
                   "phoneNumber": "4206969",
                   "thumbnailPhoto": "https://i.insider.com/63713995951bdc00182ddd13?width=700"
+            },
+            {
+                  "id": 6,
+                  "name": "Saul Goodman",
+                  "phone": "(505) 503-4455",
+                  "thumbnailPhoto": "https://static.wikia.nocookie.net/inconsistently-heinous/images/e/e0/Saul_2009.jpg/revision/latest?cb=20220828160305"
             }]
     return (
           <View style={styles.main}>
