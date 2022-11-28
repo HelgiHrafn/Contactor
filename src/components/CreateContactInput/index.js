@@ -4,7 +4,7 @@ import styles from './styles'
 import { Entypo } from '@expo/vector-icons';
 
 const CreateContactInput = ({ addContact, closeModal, takePhoto, selectFromCameraRoll }) => {
-  const [inputs, setInputes] = useState({
+  const [inputs, setInputs] = useState({
     name: '',
     phoneNumber: ''
   })
