@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
+import Toolbar from '../../components/Toolbar'
 
 
 const [isAddModalOpen, setIsAddModalOpen] = useState(false)

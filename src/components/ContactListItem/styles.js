@@ -5,7 +5,7 @@ export default StyleSheet.create({
         borderTopWidth: 1,
         display: 'flex',
         flexDirection: 'row',
-        padding: 5,
+        paddingVertical: 10,
         alignItems: 'center'
     },
     image: {
