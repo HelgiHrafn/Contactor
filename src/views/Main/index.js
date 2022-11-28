@@ -4,21 +4,22 @@ import { View, Text } from 'react-native'
 import Toolbar from'../../components/Toolbar'
 import AddContactModal from '../../components/AddContactModal'
 import React, { useState } from 'react'
-import { View } from 'react-native'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
 
 
-const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
-const addContact = async () => {
-  //const newBoard = await fileService.addItem(inputs, boardSmall)
-  console.log("We need to add contact to fileservice")
 
-}
 
 const Contacts = ({ navigation }) => {
 
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+
+    const addContact = async () => {
+    //const newBoard = await fileService.addItem(inputs, boardSmall)
+    console.log("We need to add contact to fileservice")
+
+    }
       const contacts =  [
             {
                 "id": 1,
@@ -57,9 +58,8 @@ const Contacts = ({ navigation }) => {
             }]
     
             return (
-          <View style={styles.main}>
-            <ContactList navigation={navigation} contacts={contacts} >
-
+            <View style={styles.main}>
+            <ContactList navigation={navigation} contacts={contacts}>
             </ContactList>
             <Toolbar
             onAdd={() => setIsAddModalOpen(true)}/>
@@ -68,8 +68,9 @@ const Contacts = ({ navigation }) => {
             closeModal={() => setIsAddModalOpen(false)}
             title={'Create new contact!'}
             addContact={addContact}/>
-          </View>
+            </View>
     )
   }
+
   
   export default Contacts
