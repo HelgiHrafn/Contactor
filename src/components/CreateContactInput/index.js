@@ -55,7 +55,7 @@ const CreateContactInput = ({ addContact, closeModal, takePhoto, selectFromCamer
     }
 
     return (
-        <View>
+        <View style={styles.content}>
             <TextInput
                 style={styles.input}
                 placeholder="Name"

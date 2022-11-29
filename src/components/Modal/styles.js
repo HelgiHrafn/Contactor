@@ -7,7 +7,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%'
+    height: '100%',
+    marginBottom: '60%'
   },
   body: {
     alignItems: 'center',

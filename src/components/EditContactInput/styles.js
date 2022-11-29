@@ -28,5 +28,21 @@ export default StyleSheet.create({
         fontSize: 60,
         marginTop: 20,
         marginBottom: 20
+    },
+    content: {
+        alignItems: 'center',
+        
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 100,
+        marginRight: 40
+    }, 
+    imageContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

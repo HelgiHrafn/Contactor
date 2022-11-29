@@ -20,7 +20,7 @@ const Contact = ({ navigation, route }) => {
         console.log('Camera Rolll')
     }
 
-    const editContact = () => {}
+    const editContact = (inputs, contact) => {}
 
     return (
         <View style={styles.main}>
@@ -44,7 +44,8 @@ const Contact = ({ navigation, route }) => {
                 title={'Edit contact!'}
                 takePhoto={takePhoto}
                 selectFromCameraRoll={selectFromCameraRoll}
-                editContact={editContact}/>
+                editContact={editContact}
+                contact={contact}/>
         </View>
     )
 }

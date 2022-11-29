@@ -28,5 +28,9 @@ export default StyleSheet.create({
         fontSize: 60,
         marginTop: 20,
         marginBottom: 20
+    },
+    content: {
+        alignItems: 'center',
+        
     }
 })

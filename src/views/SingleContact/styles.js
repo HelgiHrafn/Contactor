@@ -42,7 +42,8 @@ export default StyleSheet.create({
         borderRadius: 10
     },
     phoneNumber: {
-        color: 'white'
+        color: 'white',
+        marginLeft: 5
     },
     personContainer: {
         alignItems: 'center',
