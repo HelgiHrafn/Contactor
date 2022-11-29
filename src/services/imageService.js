@@ -6,14 +6,13 @@ const CAMERA_ROLL = 'CAMERA_ROLL';
 const CAMERA = 'CAMERA';
 
 const getPermission = async permissionTypes => {
-    if (permissionTypes.indexOf([CAMERA]) >= 0 ) {
+    if (permissionTypes.indexOf(CAMERA) >= 0) {
         await ImagePicker.requestCameraPermissionsAsync();
     }
-    if (permissionTypes.indexOf([CAMERA_ROLL]) >= 0 ) {
+    if (permissionTypes.indexOf(CAMERA_ROLL) >= 0) {
         await ImagePicker.requestMediaLibraryPermissionsAsync();
     }
 };
-
 
 export const selectFromCameraRoll = async () => {
     // Implement later
@@ -28,8 +27,6 @@ export const takePhoto = async () => {
         aspect: [16, 9]
     });
 
-    if (result.canceled) { return ''; }
-
-    return result.assets;
-
+    if (result.cancelled) { return ''; }
+    return result.uri;
 };
