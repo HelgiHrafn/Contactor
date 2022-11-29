@@ -41,6 +41,7 @@ const Contacts = ({ navigation }) => {
                   "phone": "(505) 503-4455",
                   "thumbnailPhoto": "https://static.wikia.nocookie.net/inconsistently-heinous/images/e/e0/Saul_2009.jpg/revision/latest?cb=20220828160305"
             }]
+      console.log(contacts)
     return (
           <View style={styles.main}>
             <ContactList navigation={navigation} contacts={contacts} ></ContactList>

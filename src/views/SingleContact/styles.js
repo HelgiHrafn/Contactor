@@ -10,5 +10,9 @@ export default StyleSheet.create({
     fontSize: 40,
     fontFamily: 'Futura',
     margin: 10
+  },
+  image: {
+    height: 100,
+    width: 100
   }
 });
