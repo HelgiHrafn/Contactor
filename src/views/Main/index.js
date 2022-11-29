@@ -67,6 +67,9 @@ const Contacts = ({ navigation }) => {
                   "thumbnailPhoto": "https://static.wikia.nocookie.net/inconsistently-heinous/images/e/e0/Saul_2009.jpg/revision/latest?cb=20220828160305"
             }]
     
+      const filter = (text) =>{
+            
+      }
             return (
             <View style={styles.main}>
             <Toolbar

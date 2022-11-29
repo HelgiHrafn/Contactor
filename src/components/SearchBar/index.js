@@ -13,7 +13,9 @@ const Searchbar = () => {
             ...input,
             [name]: value
         })
+        
     }
+    console.log(input.query)
     return (
         <SearchBar
         style={styles.searchBar}
