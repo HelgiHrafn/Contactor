@@ -12,38 +12,36 @@ import EditContactModal from '../../components/EditContactModal'
 
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
-      const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
-      const [contactsMaster, setContactsMaster] = useState(tempdata.data)
+    const [contactsMaster, setContactsMaster] = useState(tempdata.data)
 
-      const [filteredContacts, setFilteredContacts] = useState(contactsMaster)
+    const [filteredContacts, setFilteredContacts] = useState(contactsMaster)
 
-      const addImage = async image => {
-            const newImage = await fileService.addImage(image);
-      //Here we would add an Image to a contact
-       };
+    const addImage = async image => {
+        const newImage = await fileService.addImage(image)
+        // Here we would add an Image to a contact
+    }
 
-      const takePhoto = async () => {
-            const imageLocation = await imageService.takePhoto();
-            if (imageLocation.length > 0) { await addImage(imageLocation); }
-      };
+    const takePhoto = async () => {
+        const imageLocation = await imageService.takePhoto()
+        if (imageLocation.length > 0) { await addImage(imageLocation) }
+    }
 
-      const selectFromCameraRoll = async () => {
-            console.log("Camera Rolll")
-            const imageLocation = await imageService.selectFromCameraRoll();
-            if (imageLocation.length > 0) { await addImage(imageLocation); }
-      };
+    const selectFromCameraRoll = async () => {
+        console.log('Camera Rolll')
+        const imageLocation = await imageService.selectFromCameraRoll()
+        if (imageLocation.length > 0) { await addImage(imageLocation) }
+    }
 
-      const addContact = async (input) => {
-            console.log(input.name)
-            console.log(input.phoneNumber)
-            console.log("We need to add contact to fileservice")
+    const addContact = async (input) => {
+        console.log(input.name)
+        console.log(input.phoneNumber)
+        console.log('We need to add contact to fileservice')
+    }
 
-      };
-
-
-      const filter = (text) => {
-            if (text) {
+    const filter = (text) => {
+        if (text) {
             const filtered = contactsMaster.filter(
                 function (item) {
                     const itemData = item.name
@@ -72,7 +70,7 @@ const Contacts = ({ navigation }) => {
                 selectFromCameraRoll={selectFromCameraRoll}
                 addContact={addContact}/>
             <ContactList navigation={navigation} contacts={filteredContacts}/>
-            
+
         </View>
     )
 }

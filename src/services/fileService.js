@@ -1,20 +1,20 @@
-import * as FileSystem from 'expo-file-system';
-const imageDirectory = `${FileSystem.documentDirectory}images`;
-//const contactDirectory = `${FileSystem.documentDirectory}contacts`;
+import * as FileSystem from 'expo-file-system'
+const imageDirectory = `${FileSystem.documentDirectory}images`
+// const contactDirectory = `${FileSystem.documentDirectory}contacts`;
 
 const onException = (cb, errorHandler) => {
     try {
-        return cb();
+        return cb()
     } catch (err) {
         if (errorHandler) {
-            return errorHandler(err);
+            return errorHandler(err)
         }
-        console.error(err);
+        console.error(err)
     }
 }
 
 export const cleanDirectory = async () => {
-    await FileSystem.deleteAsync(imageDirectory);
+    await FileSystem.deleteAsync(imageDirectory)
 }
 
 // copyImage to the new file location
@@ -22,7 +22,7 @@ export const copyFile = async (file, newLocation) => {
     return await onException(() => FileSystem.copyAsync({
         from: file,
         to: newLocation
-    }));
+    }))
 }
 
 // export const addContact = async contactLocation => {
@@ -39,19 +39,18 @@ export const copyFile = async (file, newLocation) => {
 
 // }
 
-
 export const addImage = async imageLocation => {
-    const folderSplit = imageLocation.split('/');
-    const fileName = folderSplit[folderSplit.length - 1];
-    console.log("filename", fileName)
-    await onException(() => copyFile(imageLocation, `${imageDirectory}/${fileName}`));
+    const folderSplit = imageLocation.split('/')
+    const fileName = folderSplit[folderSplit.length - 1]
+    console.log('filename', fileName)
+    await onException(() => copyFile(imageLocation, `${imageDirectory}/${fileName}`))
 
     // loadImage returns the image as base64
     return {
         name: fileName,
         type: 'image',
         file: await loadImage(fileName)
-    };
+    }
 }
 
 // export const remove = async name => {
@@ -61,7 +60,7 @@ export const addImage = async imageLocation => {
 export const loadImage = async fileName => {
     return await onException(() => FileSystem.readAsStringAsync(`${imageDirectory}/${fileName}`, {
         encoding: FileSystem.EncodingType.Base64
-    }));
+    }))
 }
 
 // export const loadContact = async fileName => {
