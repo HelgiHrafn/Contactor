@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
- main: {
-  maxHeight: "80%"
- }
-});
+    main: {
+        maxHeight: '80%'
+    }
+})

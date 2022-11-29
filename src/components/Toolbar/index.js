@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableHighlight, Text, Image } from 'react-native'
+import { View, TouchableHighlight, Text } from 'react-native'
 import styles from './styles'
 import { headings } from '../../styles/headings'
 
