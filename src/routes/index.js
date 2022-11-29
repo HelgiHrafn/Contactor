@@ -13,6 +13,6 @@ const Routes = () => (
             <Stack.Screen name ="Contact" component={Contact} />
         </Stack.Navigator>
     </NavigationContainer>
-);
+)
 
 export default Routes
