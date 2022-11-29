@@ -7,14 +7,12 @@ import styles from './styles'
 
 const Contact = ({ navigation, route }) => {
   const contact = route.params.contact
-    console.log(contact)
-
 
   return (
         <View style={styles.main}>
           <Text style={styles.h1}> {contact.name} </Text>
-          <Text style={styles.h1}> {contact.phone} </Text>
-          <Image style={styles.image} source={contact.thumbnailPhoto}/>
+          <Text style={styles.h1}> {contact.phoneNumber} </Text>
+          <Image style={styles.image} source={{ uri: contact.thumbnailPhoto }}/>
         </View>
   )
 }
