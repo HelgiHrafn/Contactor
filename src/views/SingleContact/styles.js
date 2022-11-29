@@ -2,9 +2,12 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   main: {
-    justifyContent: 'center',
-    height: '85%',
-    marginHorizontal: 10
+    padding: 10,
+    alignItems: 'center',
+    display: 'flex',
+    backgroundColor: 'white',
+    height: '100%',
+
   },
   h1: {
     fontSize: 40,
@@ -12,7 +15,11 @@ export default StyleSheet.create({
     margin: 10
   },
   image: {
-    height: 100,
-    width: 100
+    height: 200,
+    width: 200,
+    borderRadius: 100
+  },
+  button: {
+    alignSelf: 'flex-end'
   }
 });
