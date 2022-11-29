@@ -6,6 +6,7 @@ import {View} from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
 import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
+import * as fileService from '../../services/fileService'
 import tempdata from '../../resources/tempdata.json'
 
 const Contacts = ({ navigation }) => {
@@ -17,21 +18,27 @@ const Contacts = ({ navigation }) => {
 
   const [filteredContacts, setFilteredContacts] = useState(contactsMaster)
 
+
+  const addImage = async image => {
+      const newImage = await fileService.addImage(image);
+      //Here we would add an Image to a contact
+  };
+
   const takePhoto = async () => {
-    const photo = await imageService.takePhoto();
-    console.log(photo)
+    const imageLocation = await imageService.takePhoto();
+    if (imageLocation.length > 0) { await addImage(imageLocation); }
+  };
 
-  }
-
-
-    const selectFromCameraRoll = () => {
+  const selectFromCameraRoll = async () => {
     console.log("Camera Rolll")
-    
-  }
+    const imageLocation = await imageService.selectFromCameraRoll();
+    if (imageLocation.length > 0) { await addImage(imageLocation); }
+  };
 
-  const addContact = async () => {
-    //const newBoard = await fileService.addItem(inputs, boardSmall)
-    console.log("We need to add contact to fileservice")
+  const addContact = async (input) => {
+      console.log(input.name)
+      console.log(input.phoneNumber)
+      console.log("We need to add contact to fileservice")
 
     }
       const filter = (text) =>{
