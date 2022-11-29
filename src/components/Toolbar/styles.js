@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { uranianBlue } from '../../styles/colors'
+import { ceruleanCrayola } from '../../styles/colors'
 
 export default StyleSheet.create({
   toolbar: {
@@ -7,7 +7,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 30,
-    backgroundColor: uranianBlue
+    backgroundColor: ceruleanCrayola
 
   },
   toolbarAction: {
