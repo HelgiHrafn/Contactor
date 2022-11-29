@@ -27,6 +27,6 @@ export const takePhoto = async () => {
         aspect: [16, 9]
     });
 
-    if (result.cancelled) { return ''; }
-    return result.uri;
+    if (result.canceled) { return ''; }
+    return result.assets;
 };
