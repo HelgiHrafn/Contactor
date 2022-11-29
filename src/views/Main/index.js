@@ -7,6 +7,7 @@ import AddContactModal from '../../components/AddContactModal'
 import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
 import tempdata from '../../resources/tempdata.json'
+import EditContactModal from '../../components/EditContactModal'
 
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
@@ -59,7 +60,7 @@ const Contacts = ({ navigation }) => {
                 selectFromCameraRoll={selectFromCameraRoll}
                 addContact={addContact}/>
             <ContactList navigation={navigation} contacts={filteredContacts}/>
-
+            
         </View>
     )
 }
