@@ -6,8 +6,7 @@ import ContactListItem from '../ContactListItem'
 import { headings } from '../../styles/headings'
 
 const ContactList = ({ contacts, navigation }) => (
-    <View style={styles.list}>
-        <Text style={[headings.h1, styles.title]}>My Contacts</Text>
+    <View style={[styles.list, styles.coolShadow]}>
         <FlatList
             numColumns={1}
             data={contacts.sort((a, b) => a.name.localeCompare(b.name))}
