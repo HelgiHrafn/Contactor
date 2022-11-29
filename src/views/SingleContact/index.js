@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text, Image } from 'react-native'
-import { FlatList } from 'react-native-web'
-import ContactListItem from '../../components/ContactListItem'
+import { View, Text, Image, Button} from 'react-native'
 import styles from './styles'
+import { headings } from '../../styles/headings'
 
 
 const Contact = ({ navigation, route }) => {
@@ -10,9 +9,13 @@ const Contact = ({ navigation, route }) => {
 
   return (
         <View style={styles.main}>
-          <Text style={styles.h1}> {contact.name} </Text>
-          <Text style={styles.h1}> {contact.phoneNumber} </Text>
+          <View style={styles.button}>
+            <Button title='Edit' onPress={()=>{}}/>
+          </View>
           <Image style={styles.image} source={{ uri: contact.thumbnailPhoto }}/>
+          <Text style={headings.h1}> {contact.name} </Text>
+          <Text style={headings.h1}> {contact.phoneNumber} </Text>
+          
         </View>
   )
 }
