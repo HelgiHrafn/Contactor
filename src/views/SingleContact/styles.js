@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { amaranth, celadon, ceruleanCrayola, chineseViolet, corn, emerald, fireOpal, maximumYellowRed, uranianBlue, vividTangerine } from '../../styles/colors';
 
 export default StyleSheet.create({
   main: {
@@ -21,5 +22,35 @@ export default StyleSheet.create({
   },
   button: {
     alignSelf: 'flex-end'
+  },
+  callButton:{
+    backgroundColor: emerald,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 45,
+    width: 45,
+    marginLeft: 5
+  },
+  phoneContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+    backgroundColor: fireOpal,
+    padding: 5,
+    borderRadius: 10
+  },
+  phoneNumber: {
+    color: 'white',
+  },
+  personContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: ceruleanCrayola,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    borderRadius: 1000,
+    marginBottom: 10,
   }
 });
