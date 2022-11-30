@@ -1,25 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
-import { View } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
 import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
 import * as fileService from '../../services/fileService'
 import tempdata from '../../resources/tempdata.json'
-import EditContactModal from '../../components/EditContactModal'
-import { AsyncStorage } from 'react-native'
 
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
-    const [contactsMaster, setContactsMaster] = useState(tempdata.data)
+    const [contactsMaster, setContactsMaster] = useState([])
 
     const [filteredContacts, setFilteredContacts] = useState(contactsMaster)
 
     const [imageTemp, setImageTemp] = useState({})
+
+    useEffect(() => {
+        (async () => {
+            console.log("useEffect")
+            const contacts = await fileService.getAllContacts()
+            setContactsMaster(contacts)
+            setFilteredContacts(contacts)
+        })();
+    }, []);
 
     const addImage = async image => {
         const newImage = await fileService.addImage(image)
@@ -28,61 +35,56 @@ const Contacts = ({ navigation }) => {
 
     const takePhoto = async () => {
         const image = await imageService.takePhoto()
-        if (image.assets.length > 0) { 
-            let imageToSet = await addImage(image) 
-            setImageTemp(imageToSet);
+        if (image.assets.length > 0) {
+            const imageToSet = await addImage(image)
+            setImageTemp(imageToSet)
             console.log(imageTemp)
-      }
+        }
     }
 
     const selectFromCameraRoll = async () => {
         console.log('Camera Rolll')
         const image = await imageService.selectFromCameraRoll()
-        if (image.length > 0) { 
-            let imageToSet = await addImage(image) 
-            setImageTemp(imageToSet);
-            // await addImage(imageLocation) 
-      }
+        if (image.length > 0) {
+            const imageToSet = await addImage(image)
+            setImageTemp(imageToSet)
+            // await addImage(imageLocation)
+        }
     }
 
     const addContact = async (input) => {
-      try {
-
-      
-            let filename = '';
-            let uuid = 'sdfsdfsdf'
-            let data = {
-                  name: '',
-                  phoneNumber: '',
-                  image: '',
-            };
+        try {
+            let filename = ''
+            const uuid = 'sdfsdfsdf'
+            const data = {
+                name: '',
+                phoneNumber: '',
+                image: ''
+            }
             console.log(input.name)
-             console.log(input.phoneNumber)
+            console.log(input.phoneNumber)
             console.log('We need to add contact to fileservice')
 
-            data.name = input.name;
-            data.phoneNumber = input.phoneNumber;
+            data.name = input.name
+            data.phoneNumber = input.phoneNumber
             // TODO: generate uuid
-            filename = data.name + uuid;
-            let imageSuccessData = null;
-            if(imageTemp && imageTemp?.base64) {
-                  console.log("imageTemp?.base64: ", imageTemp?.base64);
-                  data.image = imageTemp.base64;
+            filename = data.name + uuid
+            const imageSuccessData = null
+            if (imageTemp && imageTemp?.base64) {
+                console.log('imageTemp?.base64: ', imageTemp?.base64)
+                data.image = imageTemp.base64
             // imageSuccessData = await fileService.saveImage(imageTemp.saveDir, imageTemp.base64);
-            // if(imageSuccessData && imageSuccessData.success) {   
+            // if(imageSuccessData && imageSuccessData.success) {
             // }
+            }
+
+            // Serialize json
+            const jsonString = JSON.stringify(data)
+            await fileService.saveJson(filename, jsonString)
+        } catch (ex) {
+            console.log('err saving img: ', ex)
         }
-
-      // Serialize json
-      let jsonString = JSON.stringify(data);
-
-        await fileService.saveJson(filename, jsonString);
-      } catch(ex) {
-            console.log("err saving img: ", ex);
-      }
     }
-
-
 
     const filter = (text) => {
         if (text) {

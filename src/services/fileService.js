@@ -2,8 +2,19 @@ import * as FileSystem from 'expo-file-system';
 // import * as MediaLibrary from 'expo-media-library';
 
 const imageDirectory = `${FileSystem.documentDirectory}images`;
-// const contactDirectory = `${FileSystem.documentDirectory}contacts`;
 
+const contactDirectory = `${FileSystem.documentDirectory}contacts`;
+
+const onException = (cb, errorHandler) => {
+    try {
+        return cb();
+    } catch (err) {
+        if (errorHandler) {
+            return errorHandler(err);
+        }
+        console.error(err);
+    }
+}
 //  
 
 // export const cleanDirectory = async () => {
@@ -78,9 +89,10 @@ export const addImage = async image => {
 };
 
 export const saveJson = async(filename, jsonString) => {
+    await setupContactDirectory()
     console.log("whats jsonstring", jsonString)
     console.log("whats filename", filename)
-    let fileUri = await FileSystem.StorageAccessFramework.createFileAsync(imageDirectory, filename, "application/json");
+    let fileUri = contactDirectory + '/' + filename + '.json'//await FileSystem.createFileAsync(imageDirectory, filename, "application/json");
     await FileSystem.writeAsStringAsync(fileUri, jsonString, {encoding: FileSystem.EncodingType.UTF8 })
 
 }
@@ -119,12 +131,12 @@ const loadImage = async fileName => {
 //     }));
 // }
 
-// const setupDirectory = async () => {
-//     const dir = await FileSystem.getInfoAsync(imageDirectory);
-//     if (!dir.exists) {
-//         await FileSystem.makeDirectoryAsync(imageDirectory);
-//     }
-// }
+const setupContactDirectory = async () => {
+    const dir = await FileSystem.getInfoAsync(contactDirectory);
+    if (!dir.exists) {
+        await FileSystem.makeDirectoryAsync(contactDirectory);
+    }
+}
 
 // export const getAllImages = async () => {
 //     // Check if directory exists
@@ -139,3 +151,13 @@ const loadImage = async fileName => {
 //         };
 //     }));
 // }
+export const getAllContacts = async () => {
+    await setupContactDirectory()
+    const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory));
+    return Promise.all(result.map(async fileName => {
+        return {
+            name: fileName,
+            type: 'contact'
+        };
+    }));
+}
