@@ -23,6 +23,7 @@ const Contacts = ({ navigation }) => {
         (async () => {
             console.log("useEffect")
             const contacts = await fileService.getAllContacts()
+            console.log(contacts)
             setContactsMaster(contacts)
             setFilteredContacts(contacts)
         })();
@@ -79,8 +80,8 @@ const Contacts = ({ navigation }) => {
             }
 
             // Serialize json
-            const jsonString = JSON.stringify(data)
-            await fileService.saveJson(filename, jsonString)
+            //const jsonString = JSON.stringify(data)
+            await fileService.saveJson(filename, data)
         } catch (ex) {
             console.log('err saving img: ', ex)
         }

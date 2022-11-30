@@ -1,9 +1,9 @@
 import * as FileSystem from 'expo-file-system';
 // import * as MediaLibrary from 'expo-media-library';
 
-const imageDirectory = `${FileSystem.documentDirectory}images`;
+const imageDirectory = `${FileSystem.documentDirectory}images/`;
 
-const contactDirectory = `${FileSystem.documentDirectory}contacts`;
+const contactDirectory = `${FileSystem.documentDirectory}contacts/`;
 
 const onException = (cb, errorHandler) => {
     try {
@@ -51,7 +51,7 @@ export const addImage = async image => {
         console.log("whats asset",asset);
         const folderSplit = asset.split('/');
         const fileName = folderSplit[folderSplit.length - 1];
-        console.log('image directory', `${imageDirectory}/${fileName}`)
+        console.log('image directory', `${imageDirectory}${fileName}`)
         console.log('File name', fileName)
         // const saveDir = FileSystem.documentDirectory + "/" + fileName;
         return { fileName, base64: image.base64 };
@@ -88,12 +88,13 @@ export const addImage = async image => {
     }
 };
 
-export const saveJson = async(filename, jsonString) => {
+export const saveJson = async(filename, data) => {
     await setupContactDirectory()
+    const jsonString = JSON.stringify(data)
     console.log("whats jsonstring", jsonString)
     console.log("whats filename", filename)
-    let fileUri = contactDirectory + '/' + filename + '.json'//await FileSystem.createFileAsync(imageDirectory, filename, "application/json");
-    await FileSystem.writeAsStringAsync(fileUri, jsonString, {encoding: FileSystem.EncodingType.UTF8 })
+    let fileUri = contactDirectory + filename + '.json'//await FileSystem.createFileAsync(imageDirectory, filename, "application/json");
+    await FileSystem.writeAsStringAsync(fileUri, jsonString)
 
 }
 
@@ -120,7 +121,7 @@ export const saveImage = async (fileDirectory, base64) => {
 // }
 
 const loadImage = async fileName => {
-    return await FileSystem.readAsStringAsync(`${imageDirectory}/${fileName}`, {
+    return await FileSystem.readAsStringAsync(`${imageDirectory}${fileName}`, {
         encoding: FileSystem.EncodingType.Base64
     })
 }
@@ -155,9 +156,6 @@ export const getAllContacts = async () => {
     await setupContactDirectory()
     const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory));
     return Promise.all(result.map(async fileName => {
-        return {
-            name: fileName,
-            type: 'contact'
-        };
+        return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))
     }));
 }
