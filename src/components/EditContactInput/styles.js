@@ -30,15 +30,14 @@ export default StyleSheet.create({
         marginBottom: 20
     },
     content: {
-        alignItems: 'center',
-        
+        alignItems: 'center'
     },
     image: {
         width: 150,
         height: 150,
         borderRadius: 100,
         marginRight: 40
-    }, 
+    },
     imageContainer: {
         display: 'flex',
         flexDirection: 'row',

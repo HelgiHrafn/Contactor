@@ -69,8 +69,8 @@ const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectF
                 onChangeText={text => inputHandler('phoneNumber', text)} />
             <Text>{errors.phoneNumber}</Text>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: contact.thumbnailPhoto}}/>
-                
+                <Image style={styles.image} source={{ uri: contact.thumbnailPhoto }}/>
+
                 <View>
                     <TouchableOpacity
                         onPress={() => takePhoto()}>
@@ -81,9 +81,8 @@ const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectF
                         <Entypo style={styles.icon} name="image"/>
                     </TouchableOpacity>
 
-                    
                 </View>
-                
+
             </View>
             <TouchableOpacity style={styles.buttonBackground}>
                 <Button

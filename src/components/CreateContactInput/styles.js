@@ -30,7 +30,6 @@ export default StyleSheet.create({
         marginBottom: 20
     },
     content: {
-        alignItems: 'center',
-        
+        alignItems: 'center'
     }
 })

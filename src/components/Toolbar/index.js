@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Text } from 'react-native'
 import styles from './styles'
 import { headings } from '../../styles/headings'
 
-
 const Toolbar = ({ onAdd }) => (
     <View style={styles.toolbar}>
         <TouchableOpacity style={styles.toolbarAction} onPress={onAdd}>
