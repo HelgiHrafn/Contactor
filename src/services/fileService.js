@@ -21,14 +21,6 @@ const onException = (cb, errorHandler) => {
 //     await FileSystem.deleteAsync(imageDirectory)
 // }
 
-// copyImage to the new file location
-const copyFile = async (file, newLocation) => {
-    return await FileSystem.copyAsync({
-        from: file,
-        to: newLocation
-    })
-
-};
 
 // export const addContact = async contactLocation => {
 //     const folderSplit = contactLocation.split('/');
@@ -44,58 +36,45 @@ const copyFile = async (file, newLocation) => {
 
 // }
 
-export const addImage = async image => {
+export const addImage = async imageLocation => {
+    setupImageDirectory()
     try {
-        const imageLocation = image.assets;
-        const asset = imageLocation[0].uri;
-        console.log("whats asset",asset);
-        const folderSplit = asset.split('/');
+        const folderSplit = imageLocation.split('/');
         const fileName = folderSplit[folderSplit.length - 1];
-        console.log('image directory', `${imageDirectory}${fileName}`)
-        console.log('File name', fileName)
-        // const saveDir = FileSystem.documentDirectory + "/" + fileName;
-        return { fileName, base64: image.base64 };
+        await onException(() => copyFile(imageLocation, `${imageDirectory}${fileName}`))
+        
+        return { name: fileName, type: 'image', file: `${imageDirectory}${fileName}` };
 
-        // console.log("filenamemain: ", filenamemain)
-        // let fileres = await FileSystem.writeAsStringAsync(filenamemain, image.base64, {
-        //     encoding: FileSystem.EncodingType.Base64,
-        // });
-
-        // console.log("fileres: ", fileres);
-
-        // const mediaResult = await MediaLibrary.saveToLibraryAsync(filenamemain);
-        // console.log("media : ", mediaResult)
-
-        // get image:
-        // file:///var/mobile/Containers/Data/Application/609831F9-BEEA-45D1-A2BF-CBFCE5F82765/Documents/ExponentExperienceData/%2540anonymous%252FContactor-900428b0-876f-47b8-8e76-21-876f-47b8-8e76-21e6114195d4//C1F6961B-8F49-4180-9B0B-DBB7F23FFCB7.jpg
-        // console.log("going to read dir: ", FileSystem.documentDirectory)
-        // let dirHere = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory);
-        // return 
-        // console.log("dirHere: ", dirHere)
-
-        // console.log("mediaResult: : ", mediaResult)
-        // await copyFile(image.base64, `${imageDirectory}/${fileName}`);
-    
-        // loadImage returns the image as base64
-        // return {
-        //     name: fileName,
-        //     type: 'image',
-        //     file: await loadImage(fileName)
-        // };
 
     } catch(ex) {
         console.log("erx: ", ex);
     }
 };
+export const copyFile = async (file, newLocation) => {
+    return await onException(() => FileSystem.copyAsync({
+        from: file,
+        to: newLocation
+    }));
+}
 
-export const saveJson = async(filename, data) => {
+export const loadImage = async fileName => {
+    return await onException(() => FileSystem.readAsStringAsync(`${imageDirectory}${fileName}`, {
+        encoding: FileSystem.EncodingType.Base64
+    }));
+}
+export const saveJson = async(data) => {
     await setupContactDirectory()
+    const filename = data.name + '1' //
+    await generateUUID()
     const jsonString = JSON.stringify(data)
-    console.log("whats jsonstring", jsonString)
     console.log("whats filename", filename)
     let fileUri = contactDirectory + filename + '.json'//await FileSystem.createFileAsync(imageDirectory, filename, "application/json");
     await FileSystem.writeAsStringAsync(fileUri, jsonString)
 
+}
+const generateUUID = async () => {
+    const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
+    console.log(directory.length)
 }
 
 export const saveImage = async (fileDirectory, base64) => {
@@ -120,11 +99,6 @@ export const saveImage = async (fileDirectory, base64) => {
 //     return await onException(() => FileSystem.deleteAsync(`${imageDirectory}/${name}`, { idempotent: true }));
 // }
 
-const loadImage = async fileName => {
-    return await FileSystem.readAsStringAsync(`${imageDirectory}${fileName}`, {
-        encoding: FileSystem.EncodingType.Base64
-    })
-}
 
 // export const loadContact = async fileName => {
 //     return await onException(() => FileSystem.readAsStringAsync(`${contactDirectory}/${fileName}`, {
@@ -158,4 +132,15 @@ export const getAllContacts = async () => {
     return Promise.all(result.map(async fileName => {
         return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))
     }));
+}
+
+export const cleanDirectory = async () => {
+    await FileSystem.deleteAsync(contactDirectory);
+}
+
+const setupImageDirectory = async () => {
+    const dir = await FileSystem.getInfoAsync(imageDirectory);
+    if (!dir.exists) {
+        await FileSystem.makeDirectoryAsync(imageDirectory);
+    }
 }

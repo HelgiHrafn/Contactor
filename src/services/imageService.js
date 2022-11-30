@@ -32,5 +32,5 @@ export const takePhoto = async () => {
     await getPermission([CAMERA, CAMERA_ROLL])
     const result = await ImagePicker.launchCameraAsync(cameraOptions)
     if (result.canceled) { return '' }
-    return result;
+    return result
 }

@@ -21,9 +21,9 @@ const Contacts = ({ navigation }) => {
 
     useEffect(() => {
         (async () => {
+            
             console.log("useEffect")
             const contacts = await fileService.getAllContacts()
-            console.log(contacts)
             setContactsMaster(contacts)
             setFilteredContacts(contacts)
         })();
@@ -31,23 +31,27 @@ const Contacts = ({ navigation }) => {
 
     const addImage = async image => {
         const newImage = await fileService.addImage(image)
+        return newImage
         // Here we would add an Image to a contact
     }
 
     const takePhoto = async () => {
         const image = await imageService.takePhoto()
+        const imageUri = image.assets[0].uri
+        console.log(imageUri)
         if (image.assets.length > 0) {
-            const imageToSet = await addImage(image)
+            const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
-            console.log(imageTemp)
         }
     }
 
     const selectFromCameraRoll = async () => {
         console.log('Camera Rolll')
         const image = await imageService.selectFromCameraRoll()
+        const imageUri = image.assets[0].uri
+        console.log(imageUri)
         if (image.length > 0) {
-            const imageToSet = await addImage(image)
+            const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
             // await addImage(imageLocation)
         }
@@ -55,30 +59,20 @@ const Contacts = ({ navigation }) => {
 
     const addContact = async (input) => {
         try {
-            let filename = ''
-            const uuid = 'sdfsdfsdf'
-            const data = {
-                name: '',
-                phoneNumber: '',
-                image: ''
-            }
             console.log(input.name)
             console.log(input.phoneNumber)
-            console.log('We need to add contact to fileservice')
-
-            data.name = input.name
-            data.phoneNumber = input.phoneNumber
-            // TODO: generate uuid
-            filename = data.name + uuid
-            const imageSuccessData = null
-            if (imageTemp && imageTemp?.base64) {
-                console.log('imageTemp?.base64: ', imageTemp?.base64)
-                data.image = imageTemp.base64
+            
+            
+            if (imageTemp) {
+                input.thumbnailPhoto = imageTemp
             // imageSuccessData = await fileService.saveImage(imageTemp.saveDir, imageTemp.base64);
             // if(imageSuccessData && imageSuccessData.success) {
             // }
+            }else{
+                  input.thumbnailPhoto = ''
             }
-            await fileService.saveJson(filename, data)
+            console.log(input.thumbnailPhoto)
+            const data = await fileService.saveJson(input)
             setContactsMaster([...contactsMaster, data])
             setFilteredContacts([...filteredContacts, data])
         } catch (ex) {
@@ -115,7 +109,7 @@ const Contacts = ({ navigation }) => {
                 takePhoto={takePhoto}
                 selectFromCameraRoll={selectFromCameraRoll}
                 addContact={addContact}/>
-            <ContactList navigation={navigation} contacts={filteredContacts}/>
+            {/* <ContactList navigation={navigation} contacts={filteredContacts}/> */}
 
         </View>
     )
