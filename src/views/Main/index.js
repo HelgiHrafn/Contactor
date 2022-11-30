@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
-import { View, AsyncStorage } from 'react-native'
+import { View } from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
 import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
 import * as fileService from '../../services/fileService'
-import tempdata from '../../resources/tempdata.json'
 
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
@@ -21,24 +20,20 @@ const Contacts = ({ navigation }) => {
 
     useEffect(() => {
         (async () => {
-            
-            console.log("useEffect")
             const contacts = await fileService.getAllContacts()
             setContactsMaster(contacts)
             setFilteredContacts(contacts)
-        })();
-    }, []);
+        })()
+    }, [])
 
     const addImage = async image => {
         const newImage = await fileService.addImage(image)
         return newImage
-        // Here we would add an Image to a contact
     }
 
     const takePhoto = async () => {
         const image = await imageService.takePhoto()
         const imageUri = image.assets[0].uri
-        console.log(imageUri)
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
@@ -46,10 +41,8 @@ const Contacts = ({ navigation }) => {
     }
 
     const selectFromCameraRoll = async () => {
-        console.log('Camera Rolll')
         const image = await imageService.selectFromCameraRoll()
         const imageUri = image.assets[0].uri
-        console.log(imageUri)
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
@@ -58,19 +51,11 @@ const Contacts = ({ navigation }) => {
 
     const addContact = async (input) => {
         try {
-            console.log(input.name)
-            console.log(input.phoneNumber)
-            
-            
             if (imageTemp) {
                 input.thumbnailPhoto = imageTemp.file
-            // imageSuccessData = await fileService.saveImage(imageTemp.saveDir, imageTemp.base64);
-            // if(imageSuccessData && imageSuccessData.success) {
-            // }
-            }else{
-                  input.thumbnailPhoto = ''
+            } else {
+                input.thumbnailPhoto = ''
             }
-            console.log(input.thumbnailPhoto)
             await fileService.saveJson(input)
             setContactsMaster([...contactsMaster, input])
             setFilteredContacts([...filteredContacts, input])
