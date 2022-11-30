@@ -78,10 +78,9 @@ const Contacts = ({ navigation }) => {
             // if(imageSuccessData && imageSuccessData.success) {
             // }
             }
-
-            // Serialize json
-            //const jsonString = JSON.stringify(data)
             await fileService.saveJson(filename, data)
+            setContactsMaster([...contactsMaster, data])
+            setFilteredContacts([...filteredContacts, data])
         } catch (ex) {
             console.log('err saving img: ', ex)
         }
