@@ -50,10 +50,9 @@ const Contacts = ({ navigation }) => {
         const image = await imageService.selectFromCameraRoll()
         const imageUri = image.assets[0].uri
         console.log(imageUri)
-        if (image.length > 0) {
+        if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
-            // await addImage(imageLocation)
         }
     }
 
@@ -64,7 +63,7 @@ const Contacts = ({ navigation }) => {
             
             
             if (imageTemp) {
-                input.thumbnailPhoto = imageTemp
+                input.thumbnailPhoto = imageTemp.file
             // imageSuccessData = await fileService.saveImage(imageTemp.saveDir, imageTemp.base64);
             // if(imageSuccessData && imageSuccessData.success) {
             // }
@@ -72,9 +71,9 @@ const Contacts = ({ navigation }) => {
                   input.thumbnailPhoto = ''
             }
             console.log(input.thumbnailPhoto)
-            const data = await fileService.saveJson(input)
-            setContactsMaster([...contactsMaster, data])
-            setFilteredContacts([...filteredContacts, data])
+            await fileService.saveJson(input)
+            setContactsMaster([...contactsMaster, input])
+            setFilteredContacts([...filteredContacts, input])
         } catch (ex) {
             console.log('err saving img: ', ex)
         }
@@ -109,7 +108,7 @@ const Contacts = ({ navigation }) => {
                 takePhoto={takePhoto}
                 selectFromCameraRoll={selectFromCameraRoll}
                 addContact={addContact}/>
-            {/* <ContactList navigation={navigation} contacts={filteredContacts}/> */}
+            <ContactList navigation={navigation} contacts={filteredContacts}/>
 
         </View>
     )
