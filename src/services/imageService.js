@@ -22,19 +22,15 @@ const getPermission = async permissionTypes => {
 }
 
 export const selectFromCameraRoll = async () => {
-    // Implement later
     await getPermission([CAMERA_ROLL])
     const result = await ImagePicker.launchImageLibraryAsync(cameraOptions)
     if (result.canceled) { return '' }
-
-    console.log(result.uri)
-    return result.uri
+    return result
 }
 
 export const takePhoto = async () => {
     await getPermission([CAMERA, CAMERA_ROLL])
     const result = await ImagePicker.launchCameraAsync(cameraOptions)
-
     if (result.canceled) { return '' }
-    return result.uri
+    return result;
 }
