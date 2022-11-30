@@ -23,7 +23,7 @@ const Contacts = ({ navigation }) => {
         (async () => {
             console.log("useEffect")
             const contacts = await fileService.getAllContacts()
-            console.log(contacts)
+            console.log('contacts',contacts)
             setContactsMaster(contacts)
             setFilteredContacts(contacts)
         })();

@@ -20,7 +20,15 @@ const Contact = ({ navigation, route }) => {
         console.log('Camera Rolll')
     }
 
-    const editContact = (inputs, contact) => {}
+    const editContact = (contact, inputs) => {
+        console.log('This is the end')
+        console.log('contact name is', contact.name)
+        console.log('inputs name is', inputs.name)
+        contact.name = inputs.name
+        contact.thumbnailPhoto = inputs.thumbnailPhoto
+        contact.phoneNumber = inputs.phoneNumber
+        console.log('contact name is', contact.name)
+    }
 
     return (
         <View style={styles.main}>

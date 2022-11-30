@@ -49,7 +49,7 @@ const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectF
 
     const register = () => {
         if (validateForm()) {
-            editContact(inputs, contact)
+            editContact(contact, inputs)
             closeModal()
         }
     }
