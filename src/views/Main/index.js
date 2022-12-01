@@ -4,9 +4,11 @@ import ContactList from '../../components/ContactList'
 import Toolbar from '../../components/Toolbar'
 import { View } from 'react-native'
 import AddContactModal from '../../components/AddContactModal'
+import EditContactModal from '../../components/EditContactModal'
 import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
 import * as fileService from '../../services/fileService'
+
 
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
@@ -18,12 +20,16 @@ const Contacts = ({ navigation }) => {
 
     const [imageTemp, setImageTemp] = useState({})
 
+    const [currentEditingContact, setCurrentEditingContact] = useState()
+
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
-        (async () => {
-            const contacts = await fileService.getAllContacts()
-            setContactsMaster(contacts)
-            setFilteredContacts(contacts)
-        })()
+        //fileService.cleanDirectoryImages();
+        //fileService.cleanDirectory();
+        getAllContacts();
     }, [])
 
     const addImage = async image => {
@@ -32,42 +38,73 @@ const Contacts = ({ navigation }) => {
     }
 
     const takePhoto = async () => {
+        setLoading(true);
         const image = await imageService.takePhoto()
         const imageUri = image.assets[0].uri
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
         }
+        setLoading(false);
     }
 
     const selectFromCameraRoll = async () => {
+        setLoading(true);
         const image = await imageService.selectFromCameraRoll()
         const imageUri = image.assets[0].uri
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
         }
+        setLoading(false);
     }
 
     const addContact = async (input) => {
+        console.log("we add a contact")
         try {
+            
             if (imageTemp) {
                 input.thumbnailPhoto = imageTemp.file
             } else {
                 input.thumbnailPhoto = ''
             }
             await fileService.saveJson(input)
-            setContactsMaster([...contactsMaster, input])
-            setFilteredContacts([...filteredContacts, input])
+            getAllContacts();
         } catch (ex) {
             console.log('err saving img: ', ex)
         }
+        setImageTemp([])
+    }
+
+    const getAllContacts = async () => {
+        const contacts = await fileService.getAllContacts()
+        console.log("whats contacts", contacts)
+        setContactsMaster(contacts)
+        setFilteredContacts(contacts)
+    }
+
+    const editContact = async (input) => {
+        try {
+            if (imageTemp) {
+                input.thumbnailPhoto = imageTemp.file
+            } else {
+                input.thumbnailPhoto = ''
+            }
+            await fileService.editJson(input)
+            console.log("do we finish this ")
+            getAllContacts();
+
+        } catch (ex) {
+            console.log('err saving img: ', ex)
+        }
+        setImageTemp([])
     }
 
     const filter = (text) => {
         if (text) {
             const filtered = contactsMaster.filter(
                 function (item) {
+                    console.log(item)
                     const itemData = item.name
                         ? item.name.toUpperCase()
                         : ''.toUpperCase()
@@ -83,8 +120,7 @@ const Contacts = ({ navigation }) => {
     }
     return (
         <View style={styles.main}>
-            <Toolbar
-                onAdd={() => setIsAddModalOpen(true)}/>
+            <Toolbar onAdd={() => setIsAddModalOpen(true)}/>
             <Searchbar filter={filter}/>
             <AddContactModal
                 isOpen={isAddModalOpen}
@@ -92,9 +128,21 @@ const Contacts = ({ navigation }) => {
                 title={'Create new contact!'}
                 takePhoto={takePhoto}
                 selectFromCameraRoll={selectFromCameraRoll}
+                loading={loading}
                 addContact={addContact}/>
-            <ContactList navigation={navigation} contacts={filteredContacts}/>
-
+            <EditContactModal
+                isOpen={isEditModalOpen}
+                contact={currentEditingContact}
+                closeModal={() => setIsEditModalOpen(false)}
+                loading={loading}
+                takePhoto={takePhoto}
+                selectFromCameraRoll={selectFromCameraRoll}
+                editContact={editContact}
+                title={'Edit contact'}/>
+            <ContactList 
+                navigation={navigation} 
+                contacts={filteredContacts}
+                onContactEdit={(contact) => { setIsEditModalOpen(true); setCurrentEditingContact(contact)}}/> 
         </View>
     )
 }

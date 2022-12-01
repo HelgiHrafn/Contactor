@@ -41,14 +41,37 @@ export const loadImage = async fileName => {
 }
 export const saveJson = async (data) => {
     await setupContactDirectory()
-    const filename = data.name + '-' + await generateUUID()
+
+    const filename = 'contact-' + await generateUUID()
+    data.id = filename;
     const jsonString = JSON.stringify(data)
     const fileUri = contactDirectory + filename + '.json'
     await FileSystem.writeAsStringAsync(fileUri, jsonString)
 }
 
+export const editJson = async (data) => {
+    console.log("do we get here")
+    const filename = data.id
+    console.log("fuck my life")
+    try {
+        const fileUri = contactDirectory + filename + '.json'
+        await FileSystem.deleteAsync(fileUri)
+    } catch (ex) {
+        console.log('err', ex)   
+    }
+    //saveJson(data);
+    console.log("what about herree man")
+    const filenameNew = 'contact-' + await generateUUID()
+    console.log("do we get all the way")
+    const jsonString = JSON.stringify(data)
+    const fileUri = contactDirectory + filenameNew + '.json'
+    await FileSystem.writeAsStringAsync(fileUri, jsonString)    
+}
+
+
 const generateUUID = async () => {
     const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
+    console.log("whats directoery", directory)
     return directory.length.toString()
 }
 
@@ -58,13 +81,18 @@ const setupContactDirectory = async () => {
         await FileSystem.makeDirectoryAsync(contactDirectory)
     }
 }
+
+
 export const getAllContacts = async () => {
     await setupContactDirectory()
     const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory))
+    
     return Promise.all(result.map(async fileName => {
-        return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))
+        console.log("whatsf filename", fileName)
+            return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))     
     }))
 }
+
 
 export const cleanDirectory = async () => {
     await FileSystem.deleteAsync(contactDirectory)

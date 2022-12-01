@@ -10,13 +10,14 @@ const EditContactModal = ({
     editContact,
     contact,
     takePhoto,
-    selectFromCameraRoll
+    selectFromCameraRoll,
+    loading
 }) => (
     <Modal
         isOpen={isOpen}
         closeModal={closeModal}
         title={title}>
-        <EditContactInput contact={contact} editContact={editContact} closeModal={closeModal} takePhoto={takePhoto} selectFromCameraRoll={selectFromCameraRoll}></EditContactInput>
+        <EditContactInput contact={contact} editContact={editContact} closeModal={closeModal} takePhoto={takePhoto} selectFromCameraRoll={selectFromCameraRoll} loading={loading}></EditContactInput>
 
     </Modal>
 )

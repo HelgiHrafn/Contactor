@@ -3,7 +3,7 @@ import { View, TextInput, Text, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { Entypo } from '@expo/vector-icons'
 
-const CreateContactInput = ({ addContact, closeModal, takePhoto, selectFromCameraRoll }) => {
+const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, selectFromCameraRoll }) => {
     const [inputs, setInputs] = useState({
         name: '',
         phoneNumber: ''
@@ -77,13 +77,13 @@ const CreateContactInput = ({ addContact, closeModal, takePhoto, selectFromCamer
                 onPress={() => selectFromCameraRoll()}>
                 <Entypo style={styles.icon} name="image"/>
             </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonBackground}>
-                <Button
-                    title="Create"
-                    onPress={() => { register(); validateForm() }}
-                    style={styles.button}/>
-            </TouchableOpacity>
+            { loading ? null: 
+                <TouchableOpacity style={styles.buttonBackground}>
+                    <Button
+                        title="Create"
+                        onPress={() => { register(); validateForm() }}
+                        style={styles.button}/>
+                </TouchableOpacity>}
         </View>
     )
 }

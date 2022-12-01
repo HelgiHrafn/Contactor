@@ -3,10 +3,12 @@ import { View, TextInput, Text, Button, Image, TouchableOpacity } from 'react-na
 import styles from './styles'
 import { Entypo } from '@expo/vector-icons'
 
-const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectFromCameraRoll }) => {
+const EditContactInput = ({ contact, loading, editContact, closeModal, takePhoto, selectFromCameraRoll }) => {
     const [inputs, setInputs] = useState({
+        
         name: contact.name,
-        phoneNumber: contact.phoneNumber
+        phoneNumber: contact.phoneNumber,
+        id: contact.id
     })
 
     const inputHandler = (name, value) => {
@@ -49,7 +51,7 @@ const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectF
 
     const register = () => {
         if (validateForm()) {
-            editContact(contact, inputs)
+            editContact(inputs)
             closeModal()
         }
     }
@@ -80,16 +82,15 @@ const EditContactInput = ({ contact, editContact, closeModal, takePhoto, selectF
                         onPress={() => selectFromCameraRoll()}>
                         <Entypo style={styles.icon} name="image"/>
                     </TouchableOpacity>
-
                 </View>
-
             </View>
-            <TouchableOpacity style={styles.buttonBackground}>
-                <Button
-                    title="Save"
-                    onPress={() => { register(); validateForm() }}
-                    style={styles.button}/>
-            </TouchableOpacity>
+            {loading ? null : 
+                <TouchableOpacity style={styles.buttonBackground}>
+                    <Button
+                        title="Save"
+                        onPress={() => { register(); validateForm() }}
+                        style={styles.button}/>
+                </TouchableOpacity>}
         </View>
     )
 }

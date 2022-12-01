@@ -6,9 +6,9 @@ import { FontAwesome } from '@expo/vector-icons'
 import EditContactModal from '../../components/EditContactModal'
 import * as imageService from '../../services/imageService'
 
-const Contact = ({ navigation, route }) => {
+const Contact = ({ route }) => {
     const contact = route.params.contact
-
+    console.log("whats contact", contact)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
     const takePhoto = async () => {
@@ -20,16 +20,13 @@ const Contact = ({ navigation, route }) => {
         console.log('Camera Rolll')
     }
 
-    const editContact = (contact, inputs) => {
-        contact.name = inputs.name
-        contact.thumbnailPhoto = inputs.thumbnailPhoto
-        contact.phoneNumber = inputs.phoneNumber
+    const editContact = () => {
     }
 
     return (
         <View style={styles.main}>
             <View style={styles.button}>
-                <Button title='Edit' onPress={() => { setIsEditModalOpen(true) }}/>
+                <Button title='Edit' onPress={() => { editContact }}/>
             </View>
             <View style={styles.personContainer}>
                 <Image style={styles.image} source={{ uri: contact.thumbnailPhoto }}/>
@@ -48,8 +45,8 @@ const Contact = ({ navigation, route }) => {
                 title={'Edit contact!'}
                 takePhoto={takePhoto}
                 selectFromCameraRoll={selectFromCameraRoll}
-                editContact={editContact}
-                contact={contact}/>
+                contact={contact}
+                editContact={editContact}/>
         </View>
     )
 }
