@@ -71,8 +71,10 @@ export const editJson = async (data) => {
 
 const generateUUID = async () => {
     const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
+    const randomNumber = Math.floor(Math.random() * 1000000001);
     console.log("whats directoery", directory)
-    return directory.length.toString()
+    //return directory.length.toString()
+    return randomNumber.toString()
 }
 
 const setupContactDirectory = async () => {
