@@ -2,7 +2,6 @@ import React from 'react'
 import Modal from '../Modal'
 import EditContactInput from '../EditContactInput'
 
-
 const EditContactModal = ({
     isOpen,
     closeModal,
@@ -17,12 +16,12 @@ const EditContactModal = ({
         isOpen={isOpen}
         closeModal={closeModal}
         title={title}>
-        <EditContactInput 
-            contact={contact} 
-            editContact={editContact} 
-            closeModal={closeModal} 
-            takePhoto={takePhoto} 
-            selectFromCameraRoll={selectFromCameraRoll} 
+        <EditContactInput
+            contact={contact}
+            editContact={editContact}
+            closeModal={closeModal}
+            takePhoto={takePhoto}
+            selectFromCameraRoll={selectFromCameraRoll}
             loading={loading}>
         </EditContactInput>
     </Modal>

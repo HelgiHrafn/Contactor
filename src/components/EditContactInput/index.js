@@ -32,7 +32,11 @@ const EditContactInput = ({ contact, loading, editContact, closeModal, takePhoto
             errors.name = 'Name can not be empty'
         }
         if (!phoneNumber || isNaN(phoneNumber)) {
-            errors.phoneNumber = 'Number can not be empty and must only include numbers'
+            errors.phoneNumber = 'Phone number can not be empty and must only include numbers'
+        }
+        if (phoneNumber.length !== 7) {
+            console.log(phoneNumber.length)
+            errors.phoneNumber = 'Phone number must be 7 characters in length'
         }
 
         setErrors(errors)

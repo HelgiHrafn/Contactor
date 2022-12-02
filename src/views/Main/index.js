@@ -9,7 +9,6 @@ import Searchbar from '../../components/SearchBar'
 import * as imageService from '../../services/imageService'
 import * as fileService from '../../services/fileService'
 
-
 const Contacts = ({ navigation }) => {
     // A boolean flag to indicate wether the modal to add a contact is open or not
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
@@ -28,8 +27,8 @@ const Contacts = ({ navigation }) => {
 
     useEffect(() => {
         // TO DELETE CONTACTS PLUS IMAGES FROM PHONE
-        //fileService.cleanDirectory();
-        getAllContacts();
+        // fileService.cleanDirectory();
+        getAllContacts()
     }, [])
 
     const addImage = async image => {
@@ -38,37 +37,36 @@ const Contacts = ({ navigation }) => {
     }
 
     const takePhoto = async () => {
-        setLoading(true);
+        setLoading(true)
         const image = await imageService.takePhoto()
         const imageUri = image.assets[0].uri
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
         }
-        setLoading(false);
+        setLoading(false)
     }
 
     const selectFromCameraRoll = async () => {
-        setLoading(true);
+        setLoading(true)
         const image = await imageService.selectFromCameraRoll()
         const imageUri = image.assets[0].uri
         if (image.assets.length > 0) {
             const imageToSet = await addImage(imageUri)
             setImageTemp(imageToSet)
         }
-        setLoading(false);
+        setLoading(false)
     }
 
     const addContact = async (input) => {
         try {
-            
             if (imageTemp) {
                 input.thumbnailPhoto = imageTemp.file
             } else {
                 input.thumbnailPhoto = ''
             }
             await fileService.saveJson(input)
-            getAllContacts();
+            getAllContacts()
         } catch (ex) {
             console.log('err saving img: ', ex)
         }
@@ -89,8 +87,7 @@ const Contacts = ({ navigation }) => {
                 input.thumbnailPhoto = ''
             }
             await fileService.editJson(input)
-            getAllContacts();
-
+            getAllContacts()
         } catch (ex) {
             console.log('err saving img: ', ex)
         }
@@ -136,10 +133,10 @@ const Contacts = ({ navigation }) => {
                 selectFromCameraRoll={selectFromCameraRoll}
                 editContact={editContact}
                 title={'Edit contact'}/>
-            <ContactList 
-                navigation={navigation} 
+            <ContactList
+                navigation={navigation}
                 contacts={filteredContacts}
-                onContactEdit={(contact) => { setIsEditModalOpen(true); setCurrentEditingContact(contact)}}/> 
+                onContactEdit={(contact) => { setIsEditModalOpen(true); setCurrentEditingContact(contact) }}/>
         </View>
     )
 }

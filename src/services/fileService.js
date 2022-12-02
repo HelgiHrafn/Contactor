@@ -1,6 +1,5 @@
 import * as FileSystem from 'expo-file-system'
 
-
 const imageDirectory = `${FileSystem.documentDirectory}images/`
 
 const contactDirectory = `${FileSystem.documentDirectory}contacts/`
@@ -42,7 +41,7 @@ export const loadImage = async fileName => {
 export const saveJson = async (data) => {
     await setupContactDirectory()
     const filename = 'contact-' + await generateUUID()
-    data.id = filename;
+    data.id = filename
     const jsonString = JSON.stringify(data)
     const fileUri = contactDirectory + filename + '.json'
     await FileSystem.writeAsStringAsync(fileUri, jsonString)
@@ -54,7 +53,7 @@ export const editJson = async (data) => {
     data.id = filenameNew
     const jsonString = JSON.stringify(data)
     const fileUri = contactDirectory + filenameNew + '.json'
-    await FileSystem.writeAsStringAsync(fileUri, jsonString)    
+    await FileSystem.writeAsStringAsync(fileUri, jsonString)
 }
 
 const deletJson = async (data) => {
@@ -63,13 +62,13 @@ const deletJson = async (data) => {
         const fileUri = contactDirectory + filename + '.json'
         await FileSystem.deleteAsync(fileUri)
     } catch (ex) {
-        console.log('err', ex)   
+        console.log('err', ex)
     }
 }
 
 const generateUUID = async () => {
-    //const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
-    const randomNumber = Math.floor(Math.random() * 1000000001);
+    // const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
+    const randomNumber = Math.floor(Math.random() * 1000000001)
     return randomNumber.toString()
 }
 
@@ -83,15 +82,15 @@ const setupContactDirectory = async () => {
 export const getAllContacts = async () => {
     await setupContactDirectory()
     const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory))
-    
+
     return Promise.all(result.map(async fileName => {
-            return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))     
+        return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))
     }))
 }
 
 export const cleanDirectory = async () => {
-    await FileSystem.deleteAsync(contactDirectory);
-    await FileSystem.deleteAsync(imageDirectory);
+    await FileSystem.deleteAsync(contactDirectory)
+    await FileSystem.deleteAsync(imageDirectory)
 }
 
 const setupImageDirectory = async () => {

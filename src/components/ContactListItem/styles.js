@@ -18,25 +18,25 @@ export default StyleSheet.create({
     touchable: {
         activeOpacity: 0.6,
         underlayColor: '#FFF'
-      },
-      checkbox: {
+    },
+    checkbox: {
         transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }],
         margin: 10
-      },
-      editButton: {
+    },
+    editButton: {
         backgroundColor: emerald,
         borderRadius: 7,
         paddingHorizontal: 5,
         paddingVertical: 2,
         margin: 10,
         alignSelf: 'flex-end'
-      },
-      buttonContainer: {
+    },
+    buttonContainer: {
         display: 'flex',
         flexGrow: 1
-      },
-      editText: {
+    },
+    editText: {
         fontFamily: 'Futura',
-        color:'black'
-      }
+        color: 'black'
+    }
 })

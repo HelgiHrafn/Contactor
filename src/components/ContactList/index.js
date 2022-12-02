@@ -4,7 +4,6 @@ import { View, FlatList } from 'react-native'
 import styles from './styles'
 import ContactListItem from '../ContactListItem'
 
-
 const ContactList = ({ contacts, navigation, onContactEdit }) => (
     <View style={[styles.list, styles.coolShadow]}>
         <FlatList
@@ -13,8 +12,8 @@ const ContactList = ({ contacts, navigation, onContactEdit }) => (
             renderItem={({ item }) => {
                 return (
                     <ContactListItem
-                        onContactEdit={onContactEdit} 
-                        navigation={navigation} 
+                        onContactEdit={onContactEdit}
+                        navigation={navigation}
                         contact={item} />
                 )
             }}

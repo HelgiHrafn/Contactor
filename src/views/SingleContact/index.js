@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import { View, Text, Image, Button, Linking, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, Text, Image, Linking, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { headings } from '../../styles/headings'
 import { FontAwesome } from '@expo/vector-icons'
-import EditContactModal from '../../components/EditContactModal'
-
 
 const Contact = ({ route }) => {
     const contact = route.params.contact

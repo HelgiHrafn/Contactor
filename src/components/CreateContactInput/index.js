@@ -3,7 +3,6 @@ import { View, TextInput, Text, Button, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { Entypo } from '@expo/vector-icons'
 
-
 const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, selectFromCameraRoll }) => {
     const [inputs, setInputs] = useState({
         name: '',
@@ -31,6 +30,10 @@ const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, select
         }
         if (!phoneNumber || isNaN(phoneNumber)) {
             errors.phoneNumber = 'Phone number can not be empty and must only include numbers'
+        }
+        if (phoneNumber.length !== 7) {
+            console.log(phoneNumber.length)
+            errors.phoneNumber = 'Phone number must be 7 characters in length'
         }
 
         setErrors(errors)
@@ -67,8 +70,9 @@ const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, select
                 onPress={() => selectFromCameraRoll()}>
                 <Entypo style={styles.icon} name="image"/>
             </TouchableOpacity>
-            { loading ? null: 
-                <TouchableOpacity style={styles.buttonBackground}>
+            { loading
+                ? null
+                : <TouchableOpacity style={styles.buttonBackground}>
                     <Button
                         title="Create"
                         onPress={() => { register(); validateForm() }}

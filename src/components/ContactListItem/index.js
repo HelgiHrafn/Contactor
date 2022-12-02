@@ -3,27 +3,25 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { headings } from '../../styles/headings'
 
-
 const ContactListItem = ({ contact, navigation, onContactEdit }) => {
     return (
         <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Contact', { contact })}>
-            <View style={styles.contactItem}>
-                {
-                    contact?.thumbnailPhoto ?
-                    <Image style={styles.image} source={{ uri: contact?.thumbnailPhoto }} />
-                    :
-                    null
-                }
-                <Text style={headings.h2}>{contact?.name}</Text>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.editButton} onPress={() => onContactEdit(contact)}>
-                        <Text style={styles.editText}>Edit</Text>
-                    </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Contact', { contact })}>
+                <View style={styles.contactItem}>
+                    {
+                        contact?.thumbnailPhoto
+                            ? <Image style={styles.image} source={{ uri: contact?.thumbnailPhoto }} />
+                            : null
+                    }
+                    <Text style={headings.h2}>{contact?.name}</Text>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.editButton} onPress={() => onContactEdit(contact)}>
+                            <Text style={styles.editText}>Edit</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        </TouchableOpacity>
-         </View>
+            </TouchableOpacity>
+        </View>
     )
 }
 
