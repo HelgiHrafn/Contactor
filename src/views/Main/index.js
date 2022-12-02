@@ -28,7 +28,7 @@ const Contacts = ({ navigation }) => {
 
     useEffect(() => {
         // TO DELETE CONTACTS PLUS IMAGES FROM PHONE
-        fileService.cleanDirectory();
+        //fileService.cleanDirectory();
         getAllContacts();
     }, [])
 
