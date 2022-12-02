@@ -1,5 +1,5 @@
 import * as FileSystem from 'expo-file-system'
-// import * as MediaLibrary from 'expo-media-library';
+
 
 const imageDirectory = `${FileSystem.documentDirectory}images/`
 
@@ -41,7 +41,6 @@ export const loadImage = async fileName => {
 }
 export const saveJson = async (data) => {
     await setupContactDirectory()
-
     const filename = 'contact-' + await generateUUID()
     data.id = filename;
     const jsonString = JSON.stringify(data)
@@ -59,21 +58,16 @@ export const editJson = async (data) => {
     } catch (ex) {
         console.log('err', ex)   
     }
-    //saveJson(data);
-    console.log("what about herree man")
     const filenameNew = 'contact-' + await generateUUID()
-    console.log("do we get all the way")
+    data.id = filenameNew
     const jsonString = JSON.stringify(data)
     const fileUri = contactDirectory + filenameNew + '.json'
     await FileSystem.writeAsStringAsync(fileUri, jsonString)    
 }
 
-
 const generateUUID = async () => {
-    const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
+    //const directory = (await FileSystem.readDirectoryAsync(contactDirectory))
     const randomNumber = Math.floor(Math.random() * 1000000001);
-    console.log("whats directoery", directory)
-    //return directory.length.toString()
     return randomNumber.toString()
 }
 
@@ -83,7 +77,6 @@ const setupContactDirectory = async () => {
         await FileSystem.makeDirectoryAsync(contactDirectory)
     }
 }
-
 
 export const getAllContacts = async () => {
     await setupContactDirectory()
@@ -95,9 +88,9 @@ export const getAllContacts = async () => {
     }))
 }
 
-
 export const cleanDirectory = async () => {
-    await FileSystem.deleteAsync(contactDirectory)
+    await FileSystem.deleteAsync(contactDirectory);
+    await FileSystem.deleteAsync(imageDirectory);
 }
 
 const setupImageDirectory = async () => {
