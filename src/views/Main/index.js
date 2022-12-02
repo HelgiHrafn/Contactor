@@ -27,7 +27,8 @@ const Contacts = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        //fileService.cleanDirectory();
+        // TO DELETE CONTACTS PLUS IMAGES FROM PHONE
+        fileService.cleanDirectory();
         getAllContacts();
     }, [])
 
@@ -59,7 +60,6 @@ const Contacts = ({ navigation }) => {
     }
 
     const addContact = async (input) => {
-        console.log("we add a contact")
         try {
             
             if (imageTemp) {
@@ -77,7 +77,6 @@ const Contacts = ({ navigation }) => {
 
     const getAllContacts = async () => {
         const contacts = await fileService.getAllContacts()
-        console.log("whats contacts", contacts)
         setContactsMaster(contacts)
         setFilteredContacts(contacts)
     }
@@ -90,7 +89,6 @@ const Contacts = ({ navigation }) => {
                 input.thumbnailPhoto = ''
             }
             await fileService.editJson(input)
-            console.log("do we finish this ")
             getAllContacts();
 
         } catch (ex) {

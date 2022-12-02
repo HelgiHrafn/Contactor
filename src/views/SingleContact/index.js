@@ -4,21 +4,11 @@ import styles from './styles'
 import { headings } from '../../styles/headings'
 import { FontAwesome } from '@expo/vector-icons'
 import EditContactModal from '../../components/EditContactModal'
-import * as imageService from '../../services/imageService'
+
 
 const Contact = ({ route }) => {
     const contact = route.params.contact
-    console.log("whats contact", contact)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-
-    const takePhoto = async () => {
-        const photo = await imageService.takePhoto()
-        console.log(photo)
-    }
-
-    const selectFromCameraRoll = () => {
-        console.log('Camera Rolll')
-    }
 
     const editContact = () => {
     }

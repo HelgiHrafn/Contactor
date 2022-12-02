@@ -49,20 +49,22 @@ export const saveJson = async (data) => {
 }
 
 export const editJson = async (data) => {
-    console.log("do we get here")
+    await deletJson(data)
+    const filenameNew = 'contact-' + await generateUUID()
+    data.id = filenameNew
+    const jsonString = JSON.stringify(data)
+    const fileUri = contactDirectory + filenameNew + '.json'
+    await FileSystem.writeAsStringAsync(fileUri, jsonString)    
+}
+
+const deletJson = async (data) => {
     const filename = data.id
-    console.log("fuck my life")
     try {
         const fileUri = contactDirectory + filename + '.json'
         await FileSystem.deleteAsync(fileUri)
     } catch (ex) {
         console.log('err', ex)   
     }
-    const filenameNew = 'contact-' + await generateUUID()
-    data.id = filenameNew
-    const jsonString = JSON.stringify(data)
-    const fileUri = contactDirectory + filenameNew + '.json'
-    await FileSystem.writeAsStringAsync(fileUri, jsonString)    
 }
 
 const generateUUID = async () => {
@@ -83,7 +85,6 @@ export const getAllContacts = async () => {
     const result = await onException(() => FileSystem.readDirectoryAsync(contactDirectory))
     
     return Promise.all(result.map(async fileName => {
-        console.log("whatsf filename", fileName)
             return JSON.parse(await FileSystem.readAsStringAsync(contactDirectory + fileName))     
     }))
 }
