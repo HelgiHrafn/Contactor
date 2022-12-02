@@ -32,7 +32,6 @@ const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, select
             errors.phoneNumber = 'Phone number can not be empty and must only include numbers'
         }
         if (phoneNumber.length !== 7) {
-            console.log(phoneNumber.length)
             errors.phoneNumber = 'Phone number must be 7 characters in length'
         }
 
