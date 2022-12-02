@@ -15,11 +15,15 @@ const ContactListItem = ({ contact, navigation, onContactEdit }) => {
                     null
                 }
                 <Text style={headings.h2}>{contact?.name}</Text>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.editButton} onPress={() => onContactEdit(contact)}>
+                        <Text style={styles.editText}>Edit</Text>
+                    </TouchableOpacity>
+                </View>
+                
             </View>
         </TouchableOpacity>
-         <TouchableOpacity style={styles.editButton} onPress={() => onContactEdit(contact)}>
-         <Text style={styles.editText}>Edit Contact</Text>
-         </TouchableOpacity>
+         
          </View>
 
 

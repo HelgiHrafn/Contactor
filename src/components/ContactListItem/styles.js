@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { emerald } from '../../styles/colors'
 export default StyleSheet.create({
     contactItem: {
         borderColor: 'lightgray',
@@ -23,12 +24,16 @@ export default StyleSheet.create({
         margin: 10
       },
       editButton: {
-        backgroundColor: 'green',
+        backgroundColor: emerald,
         borderRadius: 7,
-        alignSelf: 'flex-end',
         paddingHorizontal: 5,
         paddingVertical: 2,
-        margin: 10
+        margin: 10,
+        alignSelf: 'flex-end'
+      },
+      buttonContainer: {
+        display: 'flex',
+        flexGrow: 1
       },
       editText: {
         fontFamily: 'Futura',

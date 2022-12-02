@@ -25,9 +25,9 @@ const Contact = ({ route }) => {
 
     return (
         <View style={styles.main}>
-            <View style={styles.button}>
+            {/* <View style={styles.button}>
                 <Button title='Edit' onPress={() => { editContact }}/>
-            </View>
+            </View> */}
             <View style={styles.personContainer}>
                 <Image style={styles.image} source={{ uri: contact.thumbnailPhoto }}/>
             </View>
@@ -35,7 +35,7 @@ const Contact = ({ route }) => {
 
             <View style={styles.phoneContainer}>
                 <Text style={[headings.h2, styles.phoneNumber]}>Phone: {contact.phoneNumber} </Text>
-                <TouchableOpacity style={styles.callButton} onPress={() => Linking.openURL('tel:')}>
+                <TouchableOpacity style={styles.callButton} onPress={() => Linking.openURL(`tel: ${contact.phoneNumber}`)}>
                     <FontAwesome name='phone' size={35} color="white"/>
                 </TouchableOpacity>
             </View>
