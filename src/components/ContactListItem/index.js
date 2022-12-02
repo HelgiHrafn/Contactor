@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './styles'
 import { headings } from '../../styles/headings'
 
+
 const ContactListItem = ({ contact, navigation, onContactEdit }) => {
     return (
         <View>
@@ -20,14 +21,9 @@ const ContactListItem = ({ contact, navigation, onContactEdit }) => {
                         <Text style={styles.editText}>Edit</Text>
                     </TouchableOpacity>
                 </View>
-                
             </View>
         </TouchableOpacity>
-         
          </View>
-
-
-
     )
 }
 

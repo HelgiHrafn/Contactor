@@ -5,6 +5,7 @@ import styles from './styles'
 import PropTypes from 'prop-types'
 import { Icon } from '@rneui/themed'
 
+
 const Modal = ({
     isOpen,
     closeModal,

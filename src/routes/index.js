@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Contacts from '../views/Main'
 import Contact from '../views/SingleContact'
 
+
 const Stack = createStackNavigator()
 
 const Routes = () => (

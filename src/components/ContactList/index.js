@@ -4,6 +4,7 @@ import { View, FlatList } from 'react-native'
 import styles from './styles'
 import ContactListItem from '../ContactListItem'
 
+
 const ContactList = ({ contacts, navigation, onContactEdit }) => (
     <View style={[styles.list, styles.coolShadow]}>
         <FlatList

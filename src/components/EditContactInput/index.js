@@ -3,6 +3,7 @@ import { View, TextInput, Text, Button, Image, TouchableOpacity } from 'react-na
 import styles from './styles'
 import { Entypo } from '@expo/vector-icons'
 
+
 const EditContactInput = ({ contact, loading, editContact, closeModal, takePhoto, selectFromCameraRoll }) => {
     const [inputs, setInputs] = useState({
         
@@ -17,16 +18,6 @@ const EditContactInput = ({ contact, loading, editContact, closeModal, takePhoto
             [name]: value
         })
     }
-
-    // const takePhoto = () => {
-    //   console.log("Paparazzi")
-
-    // }
-
-    // const selectFromCameraRoll = () => {
-    //   console.log("Camera Rolll")
-
-    // }
 
     const [errors, setErrors] = useState({
         name: '',

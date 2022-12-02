@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './styles'
 import { SearchBar } from 'react-native-elements'
 
+
 const Searchbar = ({ filter }) => {
     const [input, setInput] = useState({
         query: ''
