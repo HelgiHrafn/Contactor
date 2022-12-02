@@ -27,7 +27,6 @@ const Contacts = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-    
         fileService.cleanDirectory();
         getAllContacts();
     }, [])

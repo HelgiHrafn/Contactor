@@ -17,7 +17,7 @@ const onException = (cb, errorHandler) => {
 }
 
 export const addImage = async imageLocation => {
-    setupImageDirectory()
+    await setupImageDirectory()
     try {
         const folderSplit = imageLocation.split('/')
         const fileName = folderSplit[folderSplit.length - 1]
