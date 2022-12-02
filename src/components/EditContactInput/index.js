@@ -31,8 +31,8 @@ const EditContactInput = ({ contact, loading, editContact, closeModal, takePhoto
         if (!name) {
             errors.name = 'Name can not be empty'
         }
-        if (!phoneNumber) {
-            errors.phoneNumber = 'Number can not be empty'
+        if (!phoneNumber || isNaN(phoneNumber)) {
+            errors.phoneNumber = 'Number can not be empty and must only include numbers'
         }
 
         setErrors(errors)

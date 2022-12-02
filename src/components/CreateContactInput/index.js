@@ -29,8 +29,8 @@ const CreateContactInput = ({ addContact, loading, closeModal, takePhoto, select
         if (!name) {
             errors.name = 'Name can not be empty'
         }
-        if (!phoneNumber) {
-            errors.phoneNumber = 'Number can not be empty'
+        if (!phoneNumber || isNaN(phoneNumber)) {
+            errors.phoneNumber = 'Phone number can not be empty and must only include numbers'
         }
 
         setErrors(errors)
