@@ -8,10 +8,6 @@ import EditContactModal from '../../components/EditContactModal'
 
 const Contact = ({ route }) => {
     const contact = route.params.contact
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-
-    const editContact = () => {
-    }
 
     return (
         <View style={styles.main}>
@@ -29,14 +25,6 @@ const Contact = ({ route }) => {
                     <FontAwesome name='phone' size={35} color="white"/>
                 </TouchableOpacity>
             </View>
-            <EditContactModal
-                isOpen={isEditModalOpen}
-                closeModal={() => setIsEditModalOpen(false)}
-                title={'Edit contact!'}
-                takePhoto={takePhoto}
-                selectFromCameraRoll={selectFromCameraRoll}
-                contact={contact}
-                editContact={editContact}/>
         </View>
     )
 }
